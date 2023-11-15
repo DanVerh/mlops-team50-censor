@@ -20,17 +20,6 @@ class Actor:
         # Return IP address.
         return socket.gethostbyname(socket.gethostname())
 
-    def run_task(self):
-        print('Task')
-        object_ids = [self.task_def for _ in range(10000)]
-        ip_addresses = ray.get(object_ids)
-
-        result = None
-        print('Tasks executed')
-        for ip_address, num_tasks in Counter(ip_addresses).items():
-            result = '    {} tasks on {}'.format(num_tasks, ip_address)
-        return result
-
 ray.init()
 
 # Create actors with different resource demands
@@ -38,6 +27,4 @@ actor1 = Actor.options(num_cpus=2).remote()
 actor2 = Actor.options(num_cpus=4).remote()
 
 print(ray.get(actor1.get_cluster_resources.remote()))
-print(ray.get(actor1.run_task.remote()))
 print(ray.get(actor2.get_cluster_resources.remote()))
-print(ray.get(actor2.run_task.remote()))
