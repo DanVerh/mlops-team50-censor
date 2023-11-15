@@ -1,0 +1,5 @@
+outs:
+- md5: c1f52384834f7cc56311a7d6268a85ab
+  size: 35585024
+  hash: md5
+  path: ethics.tar
