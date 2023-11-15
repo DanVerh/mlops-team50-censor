@@ -15,5 +15,3 @@ available_node_types:
         min_workers: 0
         max_workers: 2
         resources: {"CPU": 2}
-            scheduling:
-              - preemptible: true
